@@ -1,0 +1,17 @@
+import React from 'react';
+import { Helmet } from 'react-helmet';
+
+const App = () => {
+  return (
+    <div>
+      <Helmet>
+        <title>Örnek Sayfa Başlığı</title>
+        <meta name="description" content="Sayfa açıklaması buraya gelir." />
+        <meta name="keywords" content="react, meta, başlık, açıklama" />
+      </Helmet>
+      {/* Sayfa içeriği buraya gelecek */}
+    </div>
+  );
+};
+
+export default App;
