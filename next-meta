@@ -1,0 +1,85 @@
+// components/SEOHead.js
+import Head from "next/head";
+import { useGlobalState } from "../hooks/useGlobalState";
+import { info } from "../info";
+
+const SEOHead = ({ seoData }) => {
+  const { globalState, setGlobalState } = useGlobalState();
+
+  return (
+    <Head>
+      <title>
+        {seoData?.translations?.filter(
+          (c) => c.languages_code == globalState.lang
+        )[0]?.site_baslik
+          ? seoData?.translations?.filter(
+              (c) => c.languages_code == globalState.lang
+            )[0]?.site_baslik
+          : seoData?.translations?.filter((c) => c.languages_code == "tr-TR")[0]
+              ?.site_baslik}
+      </title>
+      <meta
+        name="description"
+        content={
+          seoData?.translations?.filter(
+            (c) => c.languages_code == globalState.lang
+          )[0]?.site_aciklama
+            ? seoData?.translations?.filter(
+                (c) => c.languages_code == globalState.lang
+              )[0]?.site_aciklama
+            : seoData?.translations?.filter(
+                (c) => c.languages_code == "tr-TR"
+              )[0]?.site_aciklama
+        }
+      />
+
+      {/* Open Graph (OG) Tag'leri */}
+      <meta
+        property="og:title"
+        content={
+          seoData?.translations?.filter(
+            (c) => c.languages_code == globalState.lang
+          )[0]?.site_baslik
+            ? seoData?.translations?.filter(
+                (c) => c.languages_code == globalState.lang
+              )[0]?.site_baslik
+            : seoData?.translations?.filter(
+                (c) => c.languages_code == "tr-TR"
+              )[0]?.site_baslik
+        }
+      />
+      <meta
+        property="og:description"
+        content={
+          seoData?.translations?.filter(
+            (c) => c.languages_code == globalState.lang
+          )[0]?.site_aciklama
+            ? seoData?.translations?.filter(
+                (c) => c.languages_code == globalState.lang
+              )[0]?.site_aciklama
+            : seoData?.translations?.filter(
+                (c) => c.languages_code == "tr-TR"
+              )[0]?.site_aciklama
+        }
+      />
+      <meta
+        property="og:image"
+        content={`${info.baseURL}assets/${seoData?.logo?.id}`}
+      />
+      <meta property="og:url" content={seoData.site_url} />
+      <meta property="og:type" content="website" />
+
+      {/* Diğer Meta Tag'leri */}
+      {/* Ek meta tag'leri ekleyebilirsiniz */}
+
+      {/* Favicon */}
+      <link
+        rel="icon"
+        type="image/png"
+        href={`${info.baseURL}assets/${seoData.favicon.id}.png`}
+      />
+    </Head>
+  );
+};
+
+export default SEOHead;
